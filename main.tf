@@ -7,18 +7,23 @@
 //  }
 //}
 
+#既存のRGを使うため一時的に追加 （azurerm_resource_group.demoをdata.azurerm_resource_group.demoに置換)
+data "azurerm_resource_group" "demo" {
+  name = var.resource_group_name
+}
+
 # virtual network
 resource "azurerm_virtual_network" "demo" {
   name                = var.vnet_name
   address_space       = var.vnet_address_space
-  location            = azurerm_resource_group.demo.location
-  resource_group_name = azurerm_resource_group.demo.name
+  location            = data.azurerm_resource_group.demo.location
+  resource_group_name = data.azurerm_resource_group.demo.name
 }
 
 # Subnet
 resource "azurerm_subnet" "demo" {
   name                 = var.subnet_name
-  resource_group_name  = azurerm_resource_group.demo.name
+  resource_group_name  = data.azurerm_resource_group.demo.name
   virtual_network_name = azurerm_virtual_network.demo.name
   address_prefixes     = var.subnet_address_prefix
 }
@@ -26,8 +31,8 @@ resource "azurerm_subnet" "demo" {
 //# Storage Account
 //resource "azurerm_storage_account" "demo" {
 //  name                     = "${var.storage_account_prefix}${random_string.suffix.result}"
-//  resource_group_name      = azurerm_resource_group.demo.name
-//  location                 = azurerm_resource_group.demo.location
+//  resource_group_name      = data.azurerm_resource_group.demo.name
+//  location                 = data.azurerm_resource_group.demo.location
 //  account_tier             = "Standard"
 //  account_replication_type = "LRS"
 //}
@@ -41,8 +46,8 @@ resource "azurerm_subnet" "demo" {
 # Network Security Group：EC2でいうSecurity Group
 resource "azurerm_network_security_group" "demo" {
   name                = "nsg-handson-demo"
-  resource_group_name = azurerm_resource_group.demo.name
-  location            = azurerm_resource_group.demo.location
+  resource_group_name = data.azurerm_resource_group.demo.name
+  location            = data.azurerm_resource_group.demo.location
 
   security_rule {
     name                       = "AllowSSH"
@@ -60,8 +65,8 @@ resource "azurerm_network_security_group" "demo" {
 # NIC：EC2インスタンスに紐づくENIに相当
 resource "azurerm_network_interface" "demo" {
   name                = "nic-handson-demo"
-  resource_group_name = azurerm_resource_group.demo.name
-  location            = azurerm_resource_group.demo.location
+  resource_group_name = data.azurerm_resource_group.demo.name
+  location            = data.azurerm_resource_group.demo.location
 
   ip_configuration {
     name                          = "internal"
@@ -80,8 +85,8 @@ resource "azurerm_network_interface_security_group_association" "demo" {
 # Linux VM本体：EC2インスタンスに相当
 resource "azurerm_linux_virtual_machine" "demo" {
   name                = var.vm_name
-  resource_group_name = azurerm_resource_group.demo.name
-  location            = azurerm_resource_group.demo.location
+  resource_group_name = data.azurerm_resource_group.demo.name
+  location            = data.azurerm_resource_group.demo.location
   size                = var.vm_size
   admin_username      = var.admin_username
 

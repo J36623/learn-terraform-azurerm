@@ -105,3 +105,10 @@ resource "azurerm_linux_virtual_machine" "demo" {
     version   = "latest"
   }
 }
+
+
+# importブロックの作成
+import{
+to = azuretm_publicip.imported
+id = "pip-handson-demo-nakano"
+}

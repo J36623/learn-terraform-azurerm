@@ -110,5 +110,5 @@ resource "azurerm_linux_virtual_machine" "demo" {
 # importブロックの作成
 import{
 to = azurerm_public_ip.myPublicIp
-id = "pip-handson-demo-nakano"
+id = "/subscriptions/02938241-6e32-45f8-b7ee-a4211edef8c0/resourceGroups/nakano-learn01/providers/Microsoft.Network/publicIPAddresses/pip-handson-demo-nakano"
 }

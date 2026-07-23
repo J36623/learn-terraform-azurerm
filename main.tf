@@ -105,25 +105,3 @@ resource "azurerm_linux_virtual_machine" "demo" {
     version   = "latest"
   }
 }
-
-
-# importブロック作成後Terraformで表示されたコードを追記
-resource "azurerm_public_ip" "myPublicIp" {
-  allocation_method       = "Static"
-  ddos_protection_mode    = "VirtualNetworkInherited"
-  ddos_protection_plan_id = null
-  domain_name_label       = null
-  edge_zone               = null
-  idle_timeout_in_minutes = 4
-  ip_tags                 = {}
-  ip_version              = "IPv4"
-  location                = "japaneast"
-  name                    = "pip-handson-demo-nakano"
-  public_ip_prefix_id     = null
-  resource_group_name     = "nakano-learn01"
-  reverse_fqdn            = null
-  sku                     = "Standard"
-  sku_tier                = "Regional"
-  tags                    = {}
-  zones                   = ["1"]
-}

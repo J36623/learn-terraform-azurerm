@@ -80,8 +80,8 @@ resource "azurerm_network_interface_security_group_association" "demo" {
 # Linux VM本体：EC2インスタンスに相当
 resource "azurerm_linux_virtual_machine" "demo" {
   name                = var.vm_name
-  resource_group_name = data.azurerm_resource_group.demo.name
-  location            = data.azurerm_resource_group.demo.location
+  resource_group_name = azurerm_resource_group.demo.name
+  location            = azurerm_resource_group.demo.location
   size                = var.vm_size
   admin_username      = var.admin_username
 

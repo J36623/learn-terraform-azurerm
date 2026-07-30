@@ -82,7 +82,7 @@ resource "azurerm_linux_virtual_machine" "demo" {
   name                = var.vm_name
   resource_group_name = azurerm_resource_group.demo.name
   location            = azurerm_resource_group.demo.location
-  size                = var.vm_size
+  size                = "Standard_D2as_v4"
   admin_username      = var.admin_username
 
   network_interface_ids = [

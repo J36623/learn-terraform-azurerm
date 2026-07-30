@@ -94,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "demo" {
 
    os_disk {
     caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    storage_account_type = "StandardSSD_LRS"
   }
 
   # Ubuntu 22.04 LTS。AWSでいうAMIの指定に相当

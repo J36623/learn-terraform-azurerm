@@ -92,10 +92,10 @@ resource "azurerm_linux_virtual_machine" "demo" {
   admin_password                  = var.admin_password
   disable_password_authentication = false
 
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
+ //  os_disk {
+ //   caching              = "ReadWrite"
+ //   storage_account_type = "Standard_LRS"
+ // }
 
   # Ubuntu 22.04 LTS。AWSでいうAMIの指定に相当
   source_image_reference {
@@ -104,6 +104,24 @@ resource "azurerm_linux_virtual_machine" "demo" {
     sku       = "22_04-lts-gen2"
     version   = "latest"
   }
+}
+
+# OSディスクを作成
+resource "azurerm_managed_disk" "demo_os" {
+  name                 = "${var.vm_name}-osdisk"
+  resource_group_name  = azurerm_resource_group.this.name
+  location             = azurerm_resource_group.demo.location
+  storage_account_type = "Standard_LRS"   
+  disk_size_gb         = 32               # 任意のサイズ(GB)
+}
+
+
+# 作成したOSディスクを既存VMにアタッチ
+resource "azurerm_virtual_machine_os_disk_attachment" "demo_os" {
+  managed_disk_id    = azurerm_managed_disk.demo_os.id
+  virtual_machine_id = azurerm_linux_virtual_machine.demo.id
+  lun                = 0          # VM内で一意な論理ユニット番号(0から)
+  caching            = "ReadWrite"
 }
 
 # ① 新しいデータディスクを作成

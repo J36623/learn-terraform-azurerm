@@ -44,7 +44,7 @@ variable "vm_name" {
 
 variable "vm_size" {
   description = "VMサイズ（EC2のinstance typeに相当）。B1sは最小・低コストクラス"
-  type        = "Standard_D2as_v4"
+  type        = string
   default     = "Standard_D2_v4"
 }
 

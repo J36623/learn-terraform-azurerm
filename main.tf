@@ -95,6 +95,8 @@ resource "azurerm_linux_virtual_machine" "demo" {
    os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
+    disk_size_gb         = 30               # 任意のサイズ(GB)
+
   }
 
   # Ubuntu 22.04 LTS。AWSでいうAMIの指定に相当

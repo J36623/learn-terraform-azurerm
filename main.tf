@@ -95,7 +95,7 @@ resource "azurerm_linux_virtual_machine" "demo" {
    os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
-    disk_size_gb         = 64               # 任意のサイズ(GB)
+    disk_size_gb         = 100               # 任意のサイズ(GB)
 
   }
 

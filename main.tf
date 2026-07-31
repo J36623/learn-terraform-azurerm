@@ -94,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "demo" {
 
    os_disk {
     caching              = "ReadWrite"
-    storage_account_type = "StandardSSD_LRS"
+    storage_account_type = "Standard_LRS"
   }
 
   # Ubuntu 22.04 LTS。AWSでいうAMIの指定に相当
@@ -111,7 +111,7 @@ resource "azurerm_managed_disk" "demo_data" {
   name                 = "${var.vm_name}-datadisk-01"
   resource_group_name  = azurerm_resource_group.demo.name
   location             = azurerm_resource_group.demo.location
-  storage_account_type = "Standard_LRS"   # 必要に応じて Premium_LRS 等に変更
+  storage_account_type = "StandardSSD_LRS"   # 必要に応じて Premium_LRS 等に変更
   create_option        = "Empty"          # 空のディスクを新規作成
   disk_size_gb         = 32               # 任意のサイズ(GB)
 

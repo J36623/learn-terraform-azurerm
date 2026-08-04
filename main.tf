@@ -45,13 +45,13 @@ resource "azurerm_network_security_group" "demo" {
   location            = azurerm_resource_group.demo.location
 
   security_rule {
-    name                       = "AllowSSH"
+    name                       = "AllowHTTP"
     priority                   = 1001
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "22"
+    destination_port_range     = "8080"
     source_address_prefix      = "131.229.151.56" # デモ用。本番では自分のIPに絞る
     destination_address_prefix = "*"
   }

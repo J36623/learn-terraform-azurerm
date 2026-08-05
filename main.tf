@@ -23,6 +23,13 @@ resource "azurerm_subnet" "demo" {
   address_prefixes     = var.subnet_address_prefix
 }
 
+resource "azurerm_subnet" "demo2" {
+  name                 = "subnet-handson-demo2"
+  resource_group_name  = azurerm_resource_group.demo.name
+  virtual_network_name = azurerm_virtual_network.demo.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
+
 //# Storage Account
 //resource "azurerm_storage_account" "demo" {
 //  name                     = "${var.storage_account_prefix}${random_string.suffix.result}"

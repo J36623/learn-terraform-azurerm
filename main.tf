@@ -37,7 +37,7 @@ resource "azurerm_storage_account" "demo" {
   location                 = azurerm_resource_group.demo.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-　access_tier              = "Hot"
+  access_tier              = "Hot"
 }
 
 resource "random_string" "suffix" {

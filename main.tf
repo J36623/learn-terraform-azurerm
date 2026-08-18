@@ -40,6 +40,12 @@ resource "azurerm_storage_account" "demo" {
   access_tier              = "Cool"
 }
 
+resource "azurerm_storage_container" "test" {
+  name                  = "test"
+  storage_account_id    = azurerm_storage_account.demo.id
+  container_access_type = "private"
+}
+
 resource "random_string" "suffix" {
   length  = 6
   special = false

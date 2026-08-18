@@ -42,7 +42,7 @@ resource "azurerm_storage_account" "demo" {
 
 resource "azurerm_storage_container" "test" {
   name                  = "test"
-  storage_account_id    = azurerm_storage_account.demo.id
+  storage_account_id    = azurerm_storage_account.demo.name
   container_access_type = "private"
 }
 

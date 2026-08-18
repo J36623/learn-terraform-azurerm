@@ -30,20 +30,20 @@ resource "azurerm_subnet" "demo2" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
-//# Storage Account
-//resource "azurerm_storage_account" "demo" {
-//  name                     = "${var.storage_account_prefix}${random_string.suffix.result}"
-//  resource_group_name      = azurerm_resource_group.demo.name
-//  location                 = azurerm_resource_group.demo.location
-//  account_tier             = "Standard"
-//  account_replication_type = "LRS"
-//}
+# Storage Account
+resource "azurerm_storage_account" "demo" {
+  name                     = "${var.storage_account_prefix}${random_string.suffix.result}"
+  resource_group_name      = azurerm_resource_group.demo.name
+  location                 = azurerm_resource_group.demo.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
 
-//resource "random_string" "suffix" {
-//  length  = 6
-//  special = false
-//  upper   = false
-//}
+resource "random_string" "suffix" {
+  length  = 6
+  special = false
+  upper   = false
+}
 
 # Network Security Group：EC2でいうSecurity Group
 resource "azurerm_network_security_group" "demo" {
